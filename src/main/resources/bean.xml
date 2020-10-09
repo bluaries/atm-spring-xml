@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dataSourceDB" class="atm.DataSourceDB"/>
+    <bean id="dataSourceFile" class="atm.DataSourceFile">
+        <constructor-arg value="customers.txt"/>
+    </bean>
+    <bean id="bank" class="atm.Bank">
+        <constructor-arg value="My Bank"/>
+        <constructor-arg ref="dataSourceFile"/>
+    </bean>
+    <bean id="atm" class="atm.ATM">
+        <constructor-arg ref="bank"/>
+    </bean>
+
+</beans>
